@@ -1,0 +1,14 @@
+
+
+p, h1 {
+        color: blue;
+}
+
+h1.red {
+    color: red;
+}
+
+.dark-img:hover {
+    opacity: 0.5;
+    display: none;
+}
