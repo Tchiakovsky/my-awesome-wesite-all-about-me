@@ -2,7 +2,7 @@ angular.module('todoApp', [])
   .controller('TodoListController', function() {
     var todoList = this;
     todoList.todos = [
-      {text:'learn AngularJS', done:true, id: indexOf(this)-1},
+      {text:'learn AngularJS', done:true},//, id: todoList.todo.indexOf(this)},
       {text:'build an AngularJS app', done:false}];
  
     todoList.addTodo = function() {
@@ -19,6 +19,8 @@ angular.module('todoApp', [])
     };
     todoList.delete = function(item) {
         console.warn('ITEM--', item);
+        var index = todoList.todos.indexOf(item);
+        todoList.todos.splice(index, 1);
     }
  
     todoList.archive = function() {
