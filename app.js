@@ -3,17 +3,14 @@ angular.module('todoApp', [])
     var todoList = this;
     todoList.todos = [
 
-      { text: 'build an AngularJS app', done: false, spliced: false }
+      { text: 'build an AngularJS app', done: false, spliced: false, priority: 4 }
     ];
 
     todoList.completed = [
-      { text: 'learn AngularJS', done: true, spliced: false }
+      { text: 'learn AngularJS', done: true, spliced: false, priority: 2 }
     ];
 
     todoList.addTodo = function () {
-      // if (todoList.todoText === '') {
-      //   return;
-      // }
       todoList.todos.push({ text: todoList.todoText, done: false, priority: todoList.priority });
       todoList.todoText = '';
     };
@@ -33,14 +30,15 @@ angular.module('todoApp', [])
       var index = todoList.completed.indexOf(item);
       todoList.completed.splice(index, 1);
       todoList.todos.push(item);
+      item.done = false;
     }
 
-    todoList.archive = function () {
-      var oldTodos = todoList.todos;
-      todoList.todos = [];
-      angular.forEach(oldTodos, function (todo) {
-        if (!todo.done) todoList.todos.push(todo);
-      });
+    todoList.archive = function (item) {
+      angular.forEach(function (item) {
+        if (!item.done) {
+          item.done = true; 
+        }
+      })
     };
 
     todoList.completeOnClick = function (todo) {

@@ -1,6 +1,39 @@
+body {
+    background-color: pink;
+}
+
+#header {
+    text-align: center;
+}
+
+#completed-list {
+    float: right;
+    position: absolute;
+    right: 700px;
+    top: 70px;
+}
+
+/*#name-priority {
+    margin-bottom: 90px;
+} */
+
+button:hover {
+    background-color: red;
+}
+
+.done-true {
+    text-decoration: line-through;
+    color: grey;
+}
 
 
-p, h1 {
+
+
+
+
+
+
+/*p, h1 {
         color: blue;
 }
 
@@ -11,4 +44,4 @@ h1.red {
 .dark-img:hover {
     opacity: 0.5;
     display: none;
-}
+}*/

@@ -4,22 +4,23 @@
 <head>
   <script src="angular.min.js"></script>
   <script src="app.js"></script>
-  <link rel="stylesheet" href="page4.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-  <h2>Todo</h2>
+  <h2 id="header">Todo List </h2>
   <div ng-controller="TodoListController as todoList">
     <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-    <a href="" ng-click="todoList.archive()">archive</a>
+    <a href="" ng-click="todoList.archive()">[archive]</a>
     <ul class="unstyled">
-      <li ng-repeat="todo in todoList.todos | orderBy:'-priority'">
-        <button ng-click=todoList.delete(todo)>DELETE</button>
+      <li ng-repeat="todo in todoList.todos | orderBy:'priority'">
+        <button ng-click=todoList.delete(todo) ng-class="delete-button">DELETE</button>
         <label class="checkbox">
             <input type="checkbox" ng-model="todo.done" ng-click="todoList.completeOnClick(todo)" ng-disabled="todo.done">
+            <!--<span id ="name-priority"> name | priority</span>-->
             <span >{{todo.text}} | {{todo.priority}}</span>
           </label>
-        <button>Edit</button>
+        <!--<button>Edit</button>-->
       </li>
     </ul>
 
@@ -29,19 +30,18 @@
       <input type="number" ng-model="todoList.priority" size="90" placeholder="add a priority" min="1" max="10" ng-required="true">
       <input class="btn-primary" type="submit" value="add">
     </form>
-
-    <span>{{todoList.completed.length}} completed</span>
-
-    <ul class="unstyled">
-      <li ng-repeat="todo in todoList.completed | orderBy:'text'" ng-class="done-{{todo.done}}">
-        <button ng-click=todoList.restore(todo)>RESTORE</button>
-        <label class="checkbox">
-            <span class="done-{{todo.done}}">{{todo.text}}</span>
+    <div id="completed-list">
+      <span>  {{todoList.completed.length}} <!--{of {todoList.remaining()}}--> completed</span>
+      <ul class="unstyled">
+        <li ng-repeat="todo in todoList.completed | orderBy:'text'" ng-class="done-{{todo.done}}">
+          <button ng-click=todoList.restore(todo) ng-class="restore-button">RESTORE</button>
+          <label class="checkbox">
+            <span class="done-{{todo.done}}">{{todo.text}} | {{todo.priority}}</span>
           </label>
-        <button>Edit</button>
-      </li>
-    </ul>
-
+          <!--<button>Edit</button>-->
+        </li>
+      </ul>
+    </div>
   </div>
 </body>
 
