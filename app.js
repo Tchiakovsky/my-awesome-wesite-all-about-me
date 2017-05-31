@@ -34,11 +34,7 @@ angular.module('todoApp', [])
     }
 
     todoList.archive = function (item) {
-      angular.forEach(function (item) {
-        if (!item.done) {
-          item.done = true; 
-        }
-      })
+      item.done = true;
     };
 
     todoList.completeOnClick = function (todo) {
@@ -52,4 +48,9 @@ angular.module('todoApp', [])
       console.warn('LENGTH ' + todoList.completed.length);
     }
 
+    todoList.fullyDelete = function(item) {
+      var index = todoList.completed.indexOf(item);
+      todoList.completed.splice(index, 1);
+      alert("Are you sure you want to delete this todo? This action is irreversible!");
+    }
   });

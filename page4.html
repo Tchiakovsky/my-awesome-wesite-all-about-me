@@ -1,9 +1,10 @@
 <!doctype html>
-<html ng-app="todoApp">
+<html ng-app="todoApp" id="page4">
 
 <head>
   <script src="angular.min.js"></script>
   <script src="app.js"></script>
+  <script src="main.js"></script>
   <link rel="stylesheet" href="main.css">
 </head>
 
@@ -32,9 +33,11 @@
     </form>
     <div id="completed-list">
       <span>  {{todoList.completed.length}} <!--{of {todoList.remaining()}}--> completed</span>
+      <a href="" ng-click="todoList.restoreAll()">[restore all]</a>
       <ul class="unstyled">
         <li ng-repeat="todo in todoList.completed | orderBy:'text'" ng-class="done-{{todo.done}}">
           <button ng-click=todoList.restore(todo) ng-class="restore-button">RESTORE</button>
+          <button ng-click=todoList.fullyDelete(todo) ng-class="fully-delete">DELETE</button>
           <label class="checkbox">
             <span class="done-{{todo.done}}">{{todo.text}} | {{todo.priority}}</span>
           </label>

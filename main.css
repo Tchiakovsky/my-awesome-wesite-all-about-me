@@ -1,9 +1,10 @@
-body {
+#page4 {
     background-color: pink;
 }
 
 #header {
     text-align: center;
+    font-size: 1.5em;
 }
 
 #completed-list {
@@ -13,9 +14,13 @@ body {
     top: 70px;
 }
 
-/*#name-priority {
-    margin-bottom: 90px;
-} */
+#completed-list button:hover {
+    background-color: lightgreen;
+}
+
+ul input:hover {
+    background-color: blue;
+}
 
 button:hover {
     background-color: red;
