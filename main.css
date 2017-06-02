@@ -1,3 +1,7 @@
+body {
+        background-color: #0088cc;
+        padding: 5px;
+}
 #page4 {
     background-color: pink;
 }
@@ -14,16 +18,19 @@
     top: 70px;
 }
 
-#completed-list button:hover {
+.todo-list {
+    margin-left: 90px;
+}
+
+.restore-button:hover {
     background-color: lightgreen;
+}
+.delete-button:hover {
+    background-color: red;
 }
 
 ul input:hover {
     background-color: blue;
-}
-
-button:hover {
-    background-color: red;
 }
 
 .done-true {

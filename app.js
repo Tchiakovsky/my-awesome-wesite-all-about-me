@@ -1,5 +1,5 @@
-angular.module('todoApp', [])
-  .controller('TodoListController', function () {
+angular.module('todoApp', ['ui.bootstrap'])
+  .controller('TodoListController', ['$modal', '$log', function ($modal, $log) {
     var todoList = this;
     todoList.todos = [
 
@@ -49,8 +49,35 @@ angular.module('todoApp', [])
     }
 
     todoList.fullyDelete = function(item) {
-      var index = todoList.completed.indexOf(item);
-      todoList.completed.splice(index, 1);
-      alert("Are you sure you want to delete this todo? This action is irreversible!");
+
+      todoList.verifyDelete();
+      //alert("Are you sure you want to delete this todo? This action is irreversible!");
     }
-  });
+
+    todoList.verifyDelete = function () {
+
+        $modal.open({
+            templateUrl: 'myModalContent.html', // loads the template
+            backdrop: true, // setting backdrop allows us to close the modal window on clicking outside the modal window
+            windowClass: 'modal', // windowClass - additional CSS class(es) to be added to a modal window template
+            controller: function ($scope, $modalInstance, $log, item) {
+                $scope.item = item;
+                $scope.submit = function () {
+                $log.log('Submiting user info.'); // kinda console logs this statement
+                var index = todoList.completed.indexOf(item);
+                todoList.completed.splice(index, 1);
+                $modalInstance.dismiss('cancel'); // dismiss(reason) - a method that can be used to dismiss a modal, passing a reason
+                }
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel'); 
+                };
+            },
+            resolve: {
+                item: function () {
+                    return todoList.item;
+                }
+            }
+            });//end of modal.open
+    }; // end of scope.open functions
+  
+  }]);
